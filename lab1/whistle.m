@@ -1,61 +1,6 @@
+load vissel_02
 Ts=1/8000;
 fs=8000;
-%% a 
-load a_01 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
-
-%%
-load a_02 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
-
-%%
-load o_01 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
-
-%%
-load o_02 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
-
-
-%%
-load vissel_01 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
-
-%%
-load vissel_02 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-
-%soundsc(y(2,:),8000) % Listen to the sound
-
 %% pre processing
 vissel_02_iddata = iddata(y(2,:)',[],Ts)
 vissel_02_iddatae = vissel_02_iddata([11359:26141]);%tabort transienter
@@ -90,7 +35,6 @@ U_tot_f=sum(abs(fft(vissel_02_iddatae.y)).^2)/length(vissel_02_iddatae.y)
 vissel_02_bp = filtfilt(b,a,vissel_02_iddatae.y);
 vissel_02_bp_iddata = iddata(vissel_02_bp,[],Ts)
 
-
 % plotta frekvensspektra för filtrerad och ofiltrerad
 figure(11)
 plot(chgFreqUnit(fft(vissel_02_iddatae),'Hz'))
@@ -108,8 +52,6 @@ U_bp_f=sum(abs(fft(vissel_02_bp_iddata.y)).^2)/length(vissel_02_bp_iddata.y)
 
 
 harmonic_distorsion=1-U_bp/U_tot
-
-
 %% AR
 figure(13)
 arx_rm_trans_bp = arx(vissel_02_bp_iddata,[2], arxOptions);
@@ -119,14 +61,14 @@ pzmap(arx_rm_trans_bp,arx_org)
 title('Pol/nollställe-diagram')
 ylabel('Imaginäraxel')
 xlabel('Realaxel')
-legend('Ofiltrerad','Filtrerad')
+legend('Filtrerad','Ofiltrerad')
 pdf_print('whistle_pz_map.pdf')
 
 %avstånd till enhetscirkeln
 dist_rm_trans_bp=1-abs(roots(arx_rm_trans_bp.a))
 dist_org=1-abs(roots(arx_org.a))
 
-%% non-parametric and parametric 
+%% non-parametric and parametric upg5
 figure(14)
 etf50 = etfe(vissel_02_iddatae,[],50);
 plot(etf50)
@@ -138,20 +80,3 @@ h=bodeplot(arx_org)
 setoptions(h,'FreqUnits','Hz');
 
 pdf_print('whistle_bode_ar2.pdf')
-%%
-load fox_01 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
-
-%%
-load fox_02 % Load data (a_sound <-> name of file)
-figure(1)
-plot(y(1,:),y(2,:)) % Signal amplitude vs. time
-figure(2)
-plot(abs(fft(y(2,:))))
-
-soundsc(y(2,:),8000) % Listen to the sound
