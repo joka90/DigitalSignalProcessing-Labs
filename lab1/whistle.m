@@ -15,7 +15,7 @@ xlabel('Tid[s]')
 legend('Orginal','Trimmad')
 pdf_print('whistle_trim.pdf')
 
-%plotta frekvensspektra för trimmad och otrimmad
+%plotta frekvensspektra fÃ¶r trimmad och otrimmad
 figure(11)
 plot(chgFreqUnit(fft(vissel_02_iddata),'Hz'))
 hold on
@@ -26,7 +26,7 @@ xlabel('Frekvens[Hz]')
 legend('Orginal','Trimmad')
 pdf_print('whistle_fft.pdf')
 
-%energi-innehåll
+%energi-innehï¿½ll
 U_tot=sum(vissel_02_iddatae.y.^2)
 U_tot_f=sum(abs(fft(vissel_02_iddatae.y)).^2)/length(vissel_02_iddatae.y)
 
@@ -35,7 +35,7 @@ U_tot_f=sum(abs(fft(vissel_02_iddatae.y)).^2)/length(vissel_02_iddatae.y)
 vissel_02_bp = filtfilt(b,a,vissel_02_iddatae.y);
 vissel_02_bp_iddata = iddata(vissel_02_bp,[],Ts)
 
-% plotta frekvensspektra för filtrerad och ofiltrerad
+% plotta frekvensspektra fÃ¶r filtrerad och ofiltrerad
 figure(11)
 plot(chgFreqUnit(fft(vissel_02_iddatae),'Hz'))
 hold on
@@ -46,7 +46,7 @@ xlabel('Frekvens[Hz]')
 legend('Ofiltrerad','Filtrerad')
 pdf_print('whistle_filtrerad.pdf')
 
-%energi-innehåll
+%energi-innehÃ¥ll
 U_bp=sum(vissel_02_bp_iddata.y.^2)
 U_bp_f=sum(abs(fft(vissel_02_bp_iddata.y)).^2)/length(vissel_02_bp_iddata.y) 
 
@@ -58,15 +58,35 @@ arx_rm_trans_bp = arx(vissel_02_bp_iddata,[2], arxOptions);
 arx_org = arx(vissel_02_iddatae,[2], arxOptions);
 
 pzmap(arx_rm_trans_bp,arx_org)
-title('Pol/nollställe-diagram')
-ylabel('Imaginäraxel')
+title('Pol/nollstÃ¤lle-diagram')
+ylabel('ImaginÃ¤raxel')
 xlabel('Realaxel')
 legend('Filtrerad','Ofiltrerad')
 pdf_print('whistle_pz_map.pdf')
 
-%avstånd till enhetscirkeln
+%avstÃ¥nd till enhetscirkeln
 dist_rm_trans_bp=1-abs(roots(arx_rm_trans_bp.a))
 dist_org=1-abs(roots(arx_org.a))
+
+e = randn(1,length(vissel_02_bp_iddata.y));
+yhat = filter(1,arx_rm_trans_bp.a,e);
+
+skalfaktor=1/195
+
+yhat_iddata=iddata(yhat'.*skalfaktor,[],Ts);
+%soundsc(yhat,8000)
+%soundsc(vissel_02_bp_iddata.y,8000)
+
+figure(16)
+plot(chgFreqUnit(fft(vissel_02_bp_iddata),'Hz'))
+hold on
+plot(chgFreqUnit(fft(yhat_iddata),'Hz'),'r')
+hold off
+title('Whistle frekvensspektra ')
+xlabel('Frekvens[Hz]')
+legend('Verklig','Modell')
+pdf_print('whistle_fft_skattad.pdf')
+
 
 %% non-parametric and parametric upg5
 figure(14)
