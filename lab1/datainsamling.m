@@ -23,7 +23,6 @@ figure(1)
 plot(y(1,:),y(2,:)) % Signal amplitude vs. time
 figure(2)
 plot(abs(fft(y(2,:))))
-
 soundsc(y(2,:),8000) % Listen to the sound
 
 %%
