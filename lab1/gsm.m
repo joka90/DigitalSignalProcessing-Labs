@@ -1,9 +1,14 @@
 %%
-load('fox_01');
+load('ms');
 
-no_of_segs = floor(length(y)/160);
+F_cuttoff=2000
+[b,a]=butter(5,F_cuttoff*2/fs);
 
-sound = y(2,1:no_of_segs*160);
+a_02_lp = filtfilt(b,a,y(2,:)');
+
+no_of_segs = floor(length(a_02_lp)/160);
+
+sound = a_02_lp(1:no_of_segs*160);%y(2,1:no_of_segs*160);
 
 % Matris med segmenten
 segmat = reshape(sound,160,no_of_segs);
