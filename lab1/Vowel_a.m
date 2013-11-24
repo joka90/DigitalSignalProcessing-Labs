@@ -29,7 +29,7 @@ figure(31)
 plot(chgFreqUnit(fft(a_02_iddata_detrend),'Hz'),'b',chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'y',chgFreqUnit(fft(a_02_iddata_valid),'Hz'),'r')
 title('Vowel frekvensspektra för a')
 legend('Orginal','Valideringsdata','Estimeringsdata')
-%axis([0 1600 0 3.5])
+axis([0 2000 0 3.5])
 xlabel('Frekvens[Hz]')
 pdf_print('vowel_fft_a.pdf')
 
@@ -111,7 +111,7 @@ yhat_skal=sum(yhat.^2)/length(yhat);
 estim_skal=sum(a_02_iddata_estim.y.^2)/length(a_02_iddata_estim.y);
 
 skalfaktor=sqrt(yhat_skal/estim_skal)
-%soundsc(yhat,fs)
+soundsc(yhat,fs)
 %%
 yhat_iddata = iddata(2.8e-5.*yhat',[],Ts);
 figure(34)
