@@ -19,7 +19,7 @@ a_02_iddata_estim = a_02_lp_iddata([3640:16360]);
 figure(30)
 plot(a_02_lp_iddata,'b',a_02_iddata_estim,'y',a_02_iddata_valid,'r')
 
-title('Vowel')
+title('Vowel för a')
 xlabel('Tid[s]')
 legend('Orginal','Valideringsdata','Estimeringsdata')
 pdf_print('vowel_trim_a.pdf')
@@ -27,7 +27,7 @@ pdf_print('vowel_trim_a.pdf')
 %plotta frekvensspektra för de olika delarna
 figure(31)
 plot(chgFreqUnit(fft(a_02_iddata_detrend),'Hz'),'b',chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'y',chgFreqUnit(fft(a_02_iddata_valid),'Hz'),'r')
-title('Vowel frekvensspektra')
+title('Vowel frekvensspektra för a')
 legend('Orginal','Valideringsdata','Estimeringsdata')
 %axis([0 1600 0 3.5])
 xlabel('Frekvens[Hz]')
@@ -75,15 +75,20 @@ plot(model_order,est_diag','-',model_order,valid_diag','--')
 
 %%
 figure(32)
-pzmap(ar30)
+pzmap(ar16)
+title('Pool/nollställediagram för a')
 pdf_print('vowel_pzmap_a_ar16.pdf')
 
 opt = compareOptions;
 figure(33)
 [y,fit,x0] =compare(a_02_iddata_valid,ar30,ar20,ar16,ar14,ar12,ar10,ar8,ar6,5,opt);
-pdf_print('vowel_compare_a.pdf')
 
-resid(a_02_iddata_valid,ar20,'Corr')
+[model_order(end:-1:1)']
+fit
+
+%pdf_print('vowel_compare_a.pdf')
+
+%resid(a_02_iddata_valid,ar20,'Corr')
 
 
 %% spela modell
@@ -100,18 +105,18 @@ end
 %plot(abs(fft(u)))
 
 %% spela upp
-yhat = filter(1,ar12.a,u);
+yhat = filter(1,ar16.a,u);
 
 yhat_skal=sum(yhat.^2)/length(yhat);
 estim_skal=sum(a_02_iddata_estim.y.^2)/length(a_02_iddata_estim.y);
 
 skalfaktor=sqrt(yhat_skal/estim_skal)
-
 %soundsc(yhat,fs)
 %%
-yhat_iddata = iddata(0.8824e-4.*yhat',[],Ts);
+yhat_iddata = iddata(2.8e-5.*yhat',[],Ts);
 figure(34)
 plot(chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'b',chgFreqUnit(fft(yhat_iddata),'Hz'),'r')
-title('Vowel frekvensspektra, modell vs. verklighet')
+title('Vowel frekvensspektra för a, modell vs. verklighet')
 legend('Verklighet','Modell')
+axis([0 1600 0 3.5])
 pdf_print('vowel_model_a.pdf')
