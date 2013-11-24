@@ -45,10 +45,13 @@ ar10=ar(a_02_iddata_estim,10);
 ar8=ar(a_02_iddata_estim,8);
 ar6=ar(a_02_iddata_estim,6);
 figure(32)
-pzmap(ar12)
+pzmap(ar16)
+pdf_print('vowel_pzmap_a_ar16.pdf')
+
 opt = compareOptions;
 figure(33)
-compare(a_02_iddata_valid,ar30,ar20,ar16,ar14,ar12,ar10,ar8,ar6,5,opt)
+[y,fit,x0] =compare(a_02_iddata_valid,ar30,ar20,ar16,ar14,ar12,ar10,ar8,ar6,5,opt);
+pdf_print('vowel_compare_a.pdf')
 
 %% spela modell
 %Use the signal period as pulse interval.
@@ -78,3 +81,4 @@ figure(34)
 plot(chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'y',chgFreqUnit(fft(yhat_iddata),'Hz'),'r')
 title('Vowel frekvensspektra, modell vs. verklighet')
 legend('Verklighet','Modell')
+pdf_print('vowel_model_a.pdf')
