@@ -57,7 +57,7 @@ F_lower=1535
 F_upper=1545
 [b,a]=butter(5,[F_lower*2/fs F_upper*2/fs]);
 figure(20)
-freqz(b,a);
+freqz(b,a);%frekvenssvar for filtret
 pdf_print('whistle_filter_response.pdf')
 
 vissel_02_bp = filtfilt(b,a,vissel_02_iddatae.y);
@@ -78,12 +78,15 @@ pdf_print('whistle_filtrerad_1535_1545.pdf')
 U_bp=Ts*sum(vissel_02_bp_iddata.y.^2)
 U_bp_f=Ts*sum(abs(fft(vissel_02_bp_iddata.y)).^2)/length(vissel_02_bp_iddata.y) 
 
-sig=fft(vissel_02_iddatae.y);
+%sig=fft(vissel_02_iddatae.y);
 %sig=sig.y;
 
-figure(100)
-plot(abs(sig))
+%figure(100)
+%plot(abs(sig))
 
+
+%strict menas med vi har helt rak filtrering, dvs. ingen Roll-off vid
+%cutoff.
 U_bp_f_strict=Ts*sum(abs(sig(floor(F_lower/(fs/length(vissel_02_iddatae.y))):floor(F_upper/(fs/length(vissel_02_iddatae.y))))).^2)/length(vissel_02_iddatae.y)*2 % times 2 because we are using only half the spectra to calc the enegy
 
 
@@ -95,8 +98,8 @@ arx_rm_trans_bp = arx(vissel_02_bp_iddata,[2], arxOptions);
 arx_org = arx(vissel_02_iddatae,[2], arxOptions);
 
 pzmap(arx_rm_trans_bp,arx_org)
-title('Pol/nollst√§lle-diagram')
-ylabel('Imagin√§raxel')
+title('Pol/nollst‰lle-diagram')
+ylabel('Imagin‰raxel')
 xlabel('Realaxel')
 legend('Filtrerad','Ofiltrerad')
 pdf_print('whistle_pz_map.pdf')
