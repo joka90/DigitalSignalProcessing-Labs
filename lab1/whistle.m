@@ -26,7 +26,7 @@ xlabel('Frekvens[Hz]')
 legend('Orginal','Trimmad')
 pdf_print('whistle_fft.pdf')
 
-%energi-innehï¿½ll
+%energi-innehåll
 U_tot=Ts*sum(vissel_02_iddatae.y.^2)
 U_tot_f=Ts*sum(abs(fft(vissel_02_iddatae.y)).^2)/length(vissel_02_iddatae.y)
 
