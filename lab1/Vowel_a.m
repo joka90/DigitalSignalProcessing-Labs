@@ -44,14 +44,47 @@ ar12=ar(a_02_iddata_estim,12);
 ar10=ar(a_02_iddata_estim,10);
 ar8=ar(a_02_iddata_estim,8);
 ar6=ar(a_02_iddata_estim,6);
+
+Ne=length(a_02_iddata_estim.y);
+est_diag=[...
+sum(pe(ar6,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar8,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar10,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar12,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar14,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar16,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar20,a_02_iddata_estim.y).^2)/Ne
+sum(pe(ar30,a_02_iddata_estim.y).^2)/Ne];
+
+valid_diag=[...
+sum(pe(ar6,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar8,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar10,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar12,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar14,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar16,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar20,a_02_iddata_valid.y).^2)/Ne
+sum(pe(ar30,a_02_iddata_valid.y).^2)/Ne];
+
+prederr(ar30,a_02_iddata_valid.y)
+[err,x0e,sys_pred] = pe(a_02_iddata_valid,ar30)
+
+model_order=[6 8 10 12 14 16 20 30];
+figure(40)
+plot(model_order,est_diag','-',model_order,valid_diag','--')
+
+%%
 figure(32)
-pzmap(ar16)
+pzmap(ar30)
 pdf_print('vowel_pzmap_a_ar16.pdf')
 
 opt = compareOptions;
 figure(33)
 [y,fit,x0] =compare(a_02_iddata_valid,ar30,ar20,ar16,ar14,ar12,ar10,ar8,ar6,5,opt);
 pdf_print('vowel_compare_a.pdf')
+
+resid(a_02_iddata_valid,ar20,'Corr')
+
 
 %% spela modell
 %Use the signal period as pulse interval.
@@ -69,16 +102,16 @@ end
 %% spela upp
 yhat = filter(1,ar12.a,u);
 
-yhat_skal=sum(yhat.^2);
-estim_skal=sum(a_02_iddata_estim.y.^2);
+yhat_skal=sum(yhat.^2)/length(yhat);
+estim_skal=sum(a_02_iddata_estim.y.^2)/length(a_02_iddata_estim.y);
 
-skalfaktor=yhat_skal/estim_skal
+skalfaktor=sqrt(yhat_skal/estim_skal)
 
-soundsc(yhat,fs)
+%soundsc(yhat,fs)
 %%
-yhat_iddata = iddata(skalfaktor.*yhat',[],Ts);
+yhat_iddata = iddata(0.8824e-4.*yhat',[],Ts);
 figure(34)
-plot(chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'y',chgFreqUnit(fft(yhat_iddata),'Hz'),'r')
+plot(chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'b',chgFreqUnit(fft(yhat_iddata),'Hz'),'r')
 title('Vowel frekvensspektra, modell vs. verklighet')
 legend('Verklighet','Modell')
 pdf_print('vowel_model_a.pdf')
