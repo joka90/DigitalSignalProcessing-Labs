@@ -120,3 +120,15 @@ title('Vowel frekvensspektra för o, modell vs. verklighet')
 legend('Verklighet','Modell')
 axis([0 1000 0 25])
 pdf_print('vowel_model_o.pdf')
+
+%% WGN
+
+wgn=randn(1,length(a_02_iddata_estim.y));
+%%
+yhatw = filter(1,ar12.a,wgn);
+figure(35)
+plot(chgFreqUnit(fft(iddata((1/2)*1e-5*yhatw',[],Ts)),'Hz'),'r',chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'b')
+title('Vowel frekvensspektra för o, modell driven av vitt-brus vs. verklighet')
+legend('Modell','Verklighet')
+
+pdf_print('vowel_model_o_wgn.pdf')
