@@ -26,7 +26,7 @@ xlabel('Frekvens[Hz]')
 legend('Orginal','Trimmad')
 pdf_print('whistle_fft.pdf')
 
-%energi-innehÂll
+%energi-inneh√•ll
 U_tot=Ts*sum(vissel_02_iddatae.y.^2)
 U_tot_f=Ts*sum(abs(fft(vissel_02_iddatae.y)).^2)/length(vissel_02_iddatae.y)
 
@@ -98,8 +98,8 @@ arx_rm_trans_bp = arx(vissel_02_bp_iddata,[2], arxOptions);
 arx_org = arx(vissel_02_iddatae,[2], arxOptions);
 
 pzmap(arx_rm_trans_bp,arx_org)
-title('Pol/nollst‰lle-diagram')
-ylabel('Imagin‰raxel')
+title('Pol/nollst√§lle-diagram')
+ylabel('Imagin√§raxel')
 xlabel('Realaxel')
 legend('Filtrerad','Ofiltrerad')
 pdf_print('whistle_pz_map.pdf')
