@@ -78,13 +78,7 @@ pdf_print('whistle_filtrerad_1535_1545.pdf')
 U_bp=Ts*sum(vissel_02_bp_iddata.y.^2)
 U_bp_f=Ts*sum(abs(fft(vissel_02_bp_iddata.y)).^2)/length(vissel_02_bp_iddata.y) 
 
-%sig=fft(vissel_02_iddatae.y);
-%sig=sig.y;
-
-%figure(100)
-%plot(abs(sig))
-
-
+sig=fft(vissel_02_iddatae.y);
 %strict menas med vi har helt rak filtrering, dvs. ingen Roll-off vid
 %cutoff.
 U_bp_f_strict=Ts*sum(abs(sig(floor(F_lower/(fs/length(vissel_02_iddatae.y))):floor(F_upper/(fs/length(vissel_02_iddatae.y))))).^2)/length(vissel_02_iddatae.y)*2 % times 2 because we are using only half the spectra to calc the enegy

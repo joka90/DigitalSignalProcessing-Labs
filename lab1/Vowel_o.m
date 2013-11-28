@@ -19,15 +19,15 @@ o_02_iddata_estim = o_02_lp_iddata([7734:19922]);
 figure(30)
 plot(o_02_lp_iddata,'b',o_02_iddata_estim,'y',o_02_iddata_valid,'r')
 
-title('Vowel för o')
+title('Vowel fÃ¶r o')
 xlabel('Tid[s]')
 legend('Orginal','Valideringsdata','Estimeringsdata')
 pdf_print('vowel_trim_o.pdf')
 
-%plotta frekvensspektra för de olika delarna
+%plotta frekvensspektra fÃ¶r de olika delarna
 figure(31)
 plot(chgFreqUnit(fft(o_02_iddata_detrend),'Hz'),'b',chgFreqUnit(fft(o_02_iddata_estim),'Hz'),'y',chgFreqUnit(fft(o_02_iddata_valid),'Hz'),'r')
-title('Vowel frekvensspektra för o')
+title('Vowel frekvensspektra fÃ¶r o')
 legend('Orginal','Valideringsdata','Estimeringsdata')
 axis([0 1400 0 10])
 xlabel('Frekvens[Hz]')
@@ -76,7 +76,7 @@ plot(model_order,est_diag','-',model_order,valid_diag','--')
 %%
 figure(32)
 pzmap(ar12)
-title('Pool/nollställediagram för o')
+title('Pool/nollstÃ¤llediagram fÃ¶r o')
 pdf_print('vowel_pzmap_o_ar12.pdf')
 
 opt = compareOptions;
@@ -93,7 +93,7 @@ fit
 
 %% spela modell
 %Use the signal period as pulse interval.
-%% generera pulståg
+%% generera pulstÃ¥g
 f=101.2%o grundton = 101.2 hz
 %f=110.7%a grundton = 110.7 hz
 sampleperiod=1/(f*Ts)
@@ -116,7 +116,7 @@ soundsc(yhat,fs)
 yhat_iddata = iddata(2.8e-5.*yhat',[],Ts);
 figure(34)
 plot(chgFreqUnit(fft(o_02_iddata_estim),'Hz'),'b',chgFreqUnit(fft(yhat_iddata),'Hz'),'r')
-title('Vowel frekvensspektra för o, modell vs. verklighet')
+title('Vowel frekvensspektra fÃ¶r o, modell vs. verklighet')
 legend('Verklighet','Modell')
 axis([0 1000 0 25])
 pdf_print('vowel_model_o.pdf')
@@ -128,7 +128,7 @@ wgn=randn(1,length(a_02_iddata_estim.y));
 yhatw = filter(1,ar12.a,wgn);
 figure(35)
 plot(chgFreqUnit(fft(iddata((1/2)*1e-5*yhatw',[],Ts)),'Hz'),'r',chgFreqUnit(fft(a_02_iddata_estim),'Hz'),'b')
-title('Vowel frekvensspektra för o, modell driven av vitt-brus vs. verklighet')
+title('Vowel frekvensspektra fÃ¶r o, modell driven av vitt-brus vs. verklighet')
 legend('Modell','Verklighet')
 
 pdf_print('vowel_model_o_wgn.pdf')
