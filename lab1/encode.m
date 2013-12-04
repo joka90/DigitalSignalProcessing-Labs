@@ -20,15 +20,15 @@ end
 
 apoly = poly(k_stab_poles);
 
-% Sätt ihop till ny AR
+% SÃ¤tt ihop till ny AR
 k_stab_ar = k_ar;
 set(k_stab_ar,'a',poly(k_stab_poles));
 
-% Beräkna kovarians
+% BerÃ¤kna kovarians
 
 e=filter(k_stab_ar.a,1,seg_k);
 r=covf(e,100);
 
-% Hitta amplitud och lag till största värde
+% Hitta amplitud och lag till stÃ¶rsta vÃ¤rde
 [A,D] = max(r(20:end));
 D = D + 19;
