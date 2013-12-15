@@ -1,12 +1,12 @@
 Model {
-  Name			  "lab2a"
+  Name			  "lab2b"
   Version		  7.3
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.44"
+    ComputedModelVersion    "1.167"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -18,15 +18,15 @@ Model {
   DataTypeOverride	  "UseLocalSettings"
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
-  Created		  "Fri Sep 14 13:29:39 2001"
+  Created		  "Tue Sep 11 09:29:29 2001"
   Creator		  "rtadm"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "johka546"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 10 20:21:53 2013"
+  LastModifiedDate	  "Tue Dec 10 20:21:54 2013"
   RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:44>"
+  ModelVersionFormat	  "1.%<AutoIncrement:167>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -108,7 +108,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "10"
+	  StopTime		  "100"
 	  AbsTol		  "auto"
 	  FixedStep		  "sampletime"
 	  InitialStep		  "auto"
@@ -144,18 +144,18 @@ Model {
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
 	  InitialState		  "xInitial"
-	  LimitDataPoints	  off
+	  LimitDataPoints	  on
 	  MaxDataPoints		  "1000"
 	  LoadExternalInput	  off
 	  LoadInitialState	  off
 	  SaveFinalState	  off
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
-	  SaveOutput		  on
+	  SaveOutput		  off
 	  SaveState		  off
 	  SignalLogging		  on
 	  InspectSignalLogs	  off
-	  SaveTime		  on
+	  SaveTime		  off
 	  StateSaveName		  "xout"
 	  TimeSaveName		  "tout"
 	  OutputSaveName	  "yout"
@@ -263,7 +263,7 @@ Model {
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
-	  SFcnCompatibilityMsg	  "none"
+	  SFcnCompatibilityMsg	  "warning"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
@@ -300,14 +300,14 @@ Model {
 	  TargetBitPerLong	  32
 	  TargetShiftRightIntArith on
 	  TargetIntDivRoundTo	  "Undefined"
-	  TargetEndianess	  "Unspecified"
+	  TargetEndianess	  "LittleEndian"
 	  TargetWordSize	  32
 	  TargetTypeEmulationWarnSuppressLevel 0
 	  TargetPreprocMaxBitsSint 32
 	  TargetPreprocMaxBitsUint 32
-	  TargetHWDeviceType	  "Specified"
-	  TargetUnknown		  on
-	  ProdEqTarget		  on
+	  TargetHWDeviceType	  "MATLAB Host"
+	  TargetUnknown		  off
+	  ProdEqTarget		  off
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  7
@@ -343,11 +343,11 @@ Model {
 	    Cell		    "GenerateTraceReportEml"
 	    PropName		    "DisabledProps"
 	  }
-	  SystemTargetFile	  "grt.tlc"
+	  SystemTargetFile	  "rsim.tlc"
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
-	  TemplateMakefile	  "grt_default_tmf"
+	  TemplateMakefile	  "rsim_default_tmf"
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -358,6 +358,7 @@ Model {
 	  TLCAssert		  off
 	  ProcessScriptMode	  "Default"
 	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  "rsim_make_rtw_hook"
 	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
@@ -410,7 +411,7 @@ Model {
 	      MaxIdLength	      31
 	      PreserveName	      off
 	      PreserveNameWithParent  off
-	      ShowEliminatedStatement off
+	      ShowEliminatedStatement on
 	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
@@ -433,7 +434,7 @@ Model {
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
 	    }
-	    Simulink.GRTTargetCC {
+	    RTW.RSimTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      11
 	      Version		      "1.6.0"
@@ -494,18 +495,19 @@ Model {
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
 	      AutosarCompliant	      off
-	      UseMalloc		      off
+	      RSIM_SOLVER_SELECTION   "Auto"
 	      ExtMode		      off
-	      ExtModeStaticAlloc      off
-	      ExtModeTesting	      off
-	      ExtModeStaticAllocSize  1000000
 	      ExtModeTransport	      0
+	      ExtModeStaticAlloc      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTesting	      off
 	      ExtModeMexFile	      "ext_comm"
 	      ExtModeIntrfLevel	      "Level1"
+	      RSIM_PARAMETER_LOADING  on
+	      RSIM_STORAGE_CLASS_AUTO on
 	      RTWCAPISignals	      off
 	      RTWCAPIParams	      off
 	      RTWCAPIStates	      off
-	      GenerateASAP2	      off
 	    }
 	    PropName		    "Components"
 	  }
@@ -513,7 +515,7 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
+      CurrentDlgPage	      "Real-Time Workshop"
       ConfigPrmDlgPosition    " [ 400, 210, 1280, 840 ] "
     }
     PropName		    "ConfigurationSets"
@@ -620,6 +622,28 @@ Model {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      Inport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchByCopyingInsideSignal off
+      Interpolate	      on
+      DimensionsMode	      "auto"
+    }
+    Block {
       BlockType		      MultiPortSwitch
       Inputs		      "3"
       zeroidx		      off
@@ -656,6 +680,29 @@ Model {
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
       DimensionsMode	      "auto"
+    }
+    Block {
+      BlockType		      "S-Function"
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+    Block {
+      BlockType		      Saturate
+      UpperLimit	      "0.5"
+      LowerLimit	      "-0.5"
+      LinearizeAsGain	      on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
     }
     Block {
       BlockType		      SignalGenerator
@@ -712,12 +759,7 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      ToWorkspace
-      VariableName	      "simulink_output"
-      MaxDataPoints	      "1000"
-      Decimation	      "1"
-      SampleTime	      "0"
-      FixptAsFi		      off
+      BlockType		      Terminator
     }
     Block {
       BlockType		      ZeroOrderHold
@@ -725,8 +767,8 @@ Model {
     }
   }
   System {
-    Name		    "lab2a"
-    Location		    [617, 148, 1370, 771]
+    Name		    "lab2b"
+    Location		    [40, 129, 1230, 870]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -744,7 +786,7 @@ Model {
       BlockType		      SubSystem
       Name		      "Bandlimited\nwhite noise"
       Ports		      [0, 1]
-      Position		      [60, 195, 100, 255]
+      Position		      [65, 190, 105, 250]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -754,7 +796,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Bandlimited\nwhite noise"
-	Location		[107, 160, 383, 356]
+	Location		[105, 144, 381, 358]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -825,9 +867,20 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "Buffer"
+      Name		      "Buffer1"
       Ports		      [1, 1]
-      Position		      [535, 270, 585, 320]
+      Position		      [765, 185, 815, 235]
+      SourceBlock	      "dspbuff3/Buffer"
+      SourceType	      "Buffer"
+      N			      "64"
+      V			      "0"
+      ic		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Buffer2"
+      Ports		      [1, 1]
+      Position		      [770, 470, 820, 520]
       SourceBlock	      "dspbuff3/Buffer"
       SourceType	      "Buffer"
       N			      "64"
@@ -838,7 +891,7 @@ Model {
       BlockType		      SubSystem
       Name		      "Chirp"
       Ports		      [0, 1]
-      Position		      [60, 115, 100, 175]
+      Position		      [65, 115, 105, 175]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -907,9 +960,206 @@ Model {
     }
     Block {
       BlockType		      SubSystem
+      Name		      "Compressor"
+      Ports		      [1, 1]
+      Position		      [695, 479, 735, 511]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Compressor"
+	Location		[152, 178, 468, 293]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In"
+	  Position		  [30, 48, 60, 62]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  Position		  [170, 40, 200, 70]
+	  Gain			  "10"
+	}
+	Block {
+	  BlockType		  Saturate
+	  Name			  "Saturation"
+	  Position		  [110, 40, 140, 70]
+	  UpperLimit		  "0.1"
+	  LowerLimit		  "-0.1"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out"
+	  Position		  [255, 48, 285, 62]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Gain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In"
+	  SrcPort		  1
+	  DstBlock		  "Saturation"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "Out"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "From Wave\nFile"
+      Ports		      [0, 1]
+      Position		      [55, 609, 165, 661]
+      SourceBlock	      "dspsrcs4/From Wave File"
+      SourceType	      "From Wave File"
+      FileName		      "nyttoljud.wav"
+      SamplesPerFrame	      "4096"
+      MinBufSize	      "4096"
+      dType		      "double"
+      bLoop		      off
+      timesToPlay	      "1"
+      restartMode	      "immediately after last sample"
+      firstSampleOutput	      off
+      lastSampleOutput	      off
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "LMS"
+      Ports		      [2, 2]
+      Position		      [375, 391, 445, 449]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskType		      "LMS"
+      MaskPromptString	      "model structure|step length|sampletime"
+      MaskStyleString	      "edit,edit,edit"
+      MaskTunableValueString  "on,on,on"
+      MaskCallbackString      "||"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "on,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskVarAliasString      ",,"
+      MaskVariables	      "nnn=@1;mu=@2;Ts=@3;"
+      MaskDisplay	      "text(0.1,0.25,'y')\ntext(0.1,0.85,'u')\ntext(0.8,0.8,'eps')\ntext(0.7,0.2,'threc')"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "[1 10 45]|0.4|sampletime"
+      MaskTabNameString	      ",,"
+      System {
+	Name			"LMS"
+	Location		[313, 276, 533, 360]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [25, 28, 55, 42]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [25, 43, 55, 57]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "S-Function"
+	  Ports			  [2, 2]
+	  Position		  [80, 27, 140, 58]
+	  FunctionName		  "lmsb"
+	  Parameters		  "nnn mu Ts"
+	  EnableBusSupport	  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [165, 28, 195, 42]
+	  IconDisplay		  "Port number"
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  Position		  [165, 43, 195, 57]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  DstBlock		  "S-Function"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "S-Function"
+	  SrcPort		  2
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "S-Function"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "S-Function"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
       Name		      "MultSine"
       Ports		      [0, 1]
-      Position		      [60, 30, 100, 90]
+      Position		      [65, 30, 105, 90]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1037,38 +1287,41 @@ Model {
       BlockType		      MultiPortSwitch
       Name		      "Multiport\nSwitch"
       Ports		      [5, 1]
-      Position		      [315, 263, 345, 327]
+      Position		      [325, 178, 355, 242]
       Inputs		      "4"
     }
     Block {
       BlockType		      Reference
-      Name		      "Noise source"
-      Ports		      [1]
-      Position		      [645, 269, 700, 321]
-      DialogController	      "dspDDGCreate"
-      DialogControllerArgs    "DataTag1"
-      SourceBlock	      "dspsnks4/To Audio\nDevice"
-      SourceType	      "To Audio Device"
-      deviceName	      "5,6-INCA 88 Stereo Wave"
-      inheritSampleRate	      on
-      sampleRate	      "44100"
-      deviceDatatype	      "Determine from input data type"
-      autoBufferSize	      on
-      bufferSize	      "4096"
-      queueDuration	      "0.1"
+      Name		      "Noise cancellation on/off"
+      Ports		      [2, 1]
+      Position		      [595, 477, 625, 513]
+      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
+      SourceType	      "Manual Switch"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      sw		      "1"
+      action		      "0"
+      varsize		      off
     }
     Block {
       BlockType		      Constant
-      Name		      "Source\nselector:\n1=MultiSine\n2=Chirp\n3=White noise\n4=SquareWave"
-      Position		      [284, 150, 316, 220]
+      Name		      "Source\nselector:\n1=MultiSine\n2=Chirp\n3=WhiteNoise\n4=SquareWave"
+      Position		      [294, 65, 326, 135]
       BlockRotation	      270
       BlockMirror	      on
+      Value		      "2"
     }
     Block {
       BlockType		      SubSystem
       Name		      "Square Wave"
       Ports		      [0, 1]
-      Position		      [60, 285, 100, 345]
+      Position		      [65, 285, 105, 345]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1127,28 +1380,15 @@ Model {
       }
     }
     Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace channel"
-      Position		      [290, 410, 350, 440]
-      VariableName	      "y"
-      MaxDataPoints	      "inf"
-      SampleTime	      "sampletime"
-      SaveFormat	      "Array"
-    }
-    Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace1 noise"
-      Position		      [290, 510, 350, 540]
-      VariableName	      "u"
-      MaxDataPoints	      "inf"
-      SampleTime	      "sampletime"
-      SaveFormat	      "Array"
+      BlockType		      Terminator
+      Name		      "Terminator"
+      Position		      [480, 425, 500, 445]
     }
     Block {
       BlockType		      Reference
       Name		      "Unbuffer"
       Ports		      [1, 1]
-      Position		      [165, 501, 215, 549]
+      Position		      [205, 481, 255, 529]
       SourceBlock	      "dspbuff3/Unbuffer"
       SourceType	      "Unbuffer"
       ic		      "0"
@@ -1157,18 +1397,69 @@ Model {
       BlockType		      Reference
       Name		      "Unbuffer1"
       Ports		      [1, 1]
-      Position		      [165, 401, 215, 449]
+      Position		      [210, 381, 260, 429]
       SourceBlock	      "dspbuff3/Unbuffer"
       SourceType	      "Unbuffer"
       ic		      "0"
     }
     Block {
       BlockType		      Reference
-      Name		      "mic (IN1)"
-      Ports		      [0, 1]
-      Position		      [55, 399, 110, 451]
+      Name		      "headphones"
+      Ports		      [1]
+      Position		      [920, 469, 975, 521]
+      DialogController	      "dspDDGCreate"
+      DialogControllerArgs    "DataTag1"
+      SourceBlock	      "dspsnks4/To Audio\nDevice"
+      SourceType	      "To Audio Device"
+      deviceName	      "3,4-INCA 88 Stereo Wave"
+      inheritSampleRate	      on
+      sampleRate	      "44100"
+      deviceDatatype	      "Determine from input data type"
+      autoBufferSize	      on
+      bufferSize	      "4096"
+      queueDuration	      "0.1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "loudspeaker1"
+      Ports		      [1]
+      Position		      [920, 184, 975, 236]
       DialogController	      "dspDDGCreate"
       DialogControllerArgs    "DataTag2"
+      SourceBlock	      "dspsnks4/To Audio\nDevice"
+      SourceType	      "To Audio Device"
+      deviceName	      "5,6-INCA 88 Stereo Wave"
+      inheritSampleRate	      on
+      sampleRate	      "44100"
+      deviceDatatype	      "Determine from input data type"
+      autoBufferSize	      on
+      bufferSize	      "4096"
+      queueDuration	      "0.1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "loudspeaker2"
+      Ports		      [1]
+      Position		      [925, 609, 980, 661]
+      DialogController	      "dspDDGCreate"
+      DialogControllerArgs    "DataTag3"
+      SourceBlock	      "dspsnks4/To Audio\nDevice"
+      SourceType	      "To Audio Device"
+      deviceName	      "7,8-INCA 88 Stereo Wave (S/PDIF, AC3, PCM)"
+      inheritSampleRate	      on
+      sampleRate	      "44100"
+      deviceDatatype	      "Determine from input data type"
+      autoBufferSize	      on
+      bufferSize	      "4096"
+      queueDuration	      "0.1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "mic (IN1)"
+      Ports		      [0, 1]
+      Position		      [75, 479, 130, 531]
+      DialogController	      "dspDDGCreate"
+      DialogControllerArgs    "DataTag4"
       SourceBlock	      "dspsrcs4/From Audio\nDevice"
       SourceType	      "From Audio Device"
       deviceName	      "1,2-INCA 88 Stereo Wave"
@@ -1185,9 +1476,9 @@ Model {
       BlockType		      Reference
       Name		      "mic (IN3)"
       Ports		      [0, 1]
-      Position		      [55, 499, 110, 551]
+      Position		      [75, 379, 130, 431]
       DialogController	      "dspDDGCreate"
-      DialogControllerArgs    "DataTag3"
+      DialogControllerArgs    "DataTag5"
       SourceBlock	      "dspsrcs4/From Audio\nDevice"
       SourceType	      "From Audio Device"
       deviceName	      "3,4-INCA 88 Stereo Wave"
@@ -1201,88 +1492,161 @@ Model {
       outputDatatype	      "double"
     }
     Line {
-      SrcBlock		      "mic (IN3)"
-      SrcPort		      1
-      DstBlock		      "Unbuffer"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Source\nselector:\n1=MultiSine\n2=Chirp\n3=White noise\n4=SquareWave"
-      SrcPort		      1
-      DstBlock		      "Multiport\nSwitch"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Chirp"
-      SrcPort		      1
-      Points		      [130, 0; 0, 150]
-      DstBlock		      "Multiport\nSwitch"
-      DstPort		      3
-    }
-    Line {
-      SrcBlock		      "Square Wave"
-      SrcPort		      1
-      DstBlock		      "Multiport\nSwitch"
-      DstPort		      5
-    }
-    Line {
       SrcBlock		      "Multiport\nSwitch"
       SrcPort		      1
-      DstBlock		      "Buffer"
+      DstBlock		      "Buffer1"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Unbuffer"
+      SrcBlock		      "Source\nselector:\n1=MultiSine\n2=Chirp\n3=WhiteNoise\n4=SquareWave"
       SrcPort		      1
-      DstBlock		      "To Workspace1 noise"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Bandlimited\nwhite noise"
-      SrcPort		      1
-      Points		      [45, 0; 0, 80]
       DstBlock		      "Multiport\nSwitch"
-      DstPort		      4
+      DstPort		      1
     }
     Line {
       SrcBlock		      "MultSine"
       SrcPort		      1
-      Points		      [165, 0; 0, 225]
+      Points		      [150, 0; 0, 140]
       DstBlock		      "Multiport\nSwitch"
       DstPort		      2
     }
     Line {
-      SrcBlock		      "mic (IN1)"
+      SrcBlock		      "Chirp"
       SrcPort		      1
-      DstBlock		      "Unbuffer1"
+      Points		      [135, 0; 0, 65]
+      DstBlock		      "Multiport\nSwitch"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Bandlimited\nwhite noise"
+      SrcPort		      1
+      DstBlock		      "Multiport\nSwitch"
+      DstPort		      4
+    }
+    Line {
+      SrcBlock		      "Square Wave"
+      SrcPort		      1
+      Points		      [200, 0]
+      DstBlock		      "Multiport\nSwitch"
+      DstPort		      5
+    }
+    Line {
+      SrcBlock		      "Buffer1"
+      SrcPort		      1
+      DstBlock		      "loudspeaker1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Buffer2"
+      SrcPort		      1
+      DstBlock		      "headphones"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Unbuffer1"
       SrcPort		      1
-      DstBlock		      "To Workspace channel"
+      DstBlock		      "LMS"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Buffer"
-      SrcPort		      1
-      DstBlock		      "Noise source"
+      SrcBlock		      "LMS"
+      SrcPort		      2
+      DstBlock		      "Terminator"
       DstPort		      1
+    }
+    Line {
+      SrcBlock		      "LMS"
+      SrcPort		      1
+      Points		      [115, 0; 0, 80]
+      DstBlock		      "Noise cancellation on/off"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Unbuffer"
+      SrcPort		      1
+      Points		      [40, 0]
+      Branch {
+	Points			[0, -70]
+	DstBlock		"LMS"
+	DstPort			2
+      }
+      Branch {
+	DstBlock		"Noise cancellation on/off"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "From Wave\nFile"
+      SrcPort		      1
+      DstBlock		      "loudspeaker2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Noise cancellation on/off"
+      SrcPort		      1
+      DstBlock		      "Compressor"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Compressor"
+      SrcPort		      1
+      DstBlock		      "Buffer2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "mic (IN1)"
+      SrcPort		      1
+      DstBlock		      "Unbuffer"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "mic (IN3)"
+      SrcPort		      1
+      DstBlock		      "Unbuffer1"
+      DstPort		      1
+    }
+    Annotation {
+      Name		      "Noise cancelled signal"
+      Position		      [509, 395]
+    }
+    Annotation {
+      Name		      "Microphone signal\n=signal & noise"
+      Position		      [400, 503]
+    }
+    Annotation {
+      Name		      "Noise signal"
+      Position		      [399, 241]
+    }
+    Annotation {
+      Name		      "Noise signal"
+      Position		      [426, 193]
     }
   }
 }
 MatData {
-  NumRecords		  4
+  NumRecords		  6
   DataRecord {
-    Tag			    DataTag3
+    Tag			    DataTag5
     Data		    "  %)30     .    N     8    (     0         %    \"     $    \"     0         .    0     8    (    !    "
     "      %    \"     $    /     0         0    #P   $9R;VU!=61I;T1E=FEC90 .    0     8    (    !          %    \"    "
     " $    )     0         0    \"0   &1S<&1I86QO9P         "
   }
   DataRecord {
-    Tag			    DataTag2
+    Tag			    DataTag4
     Data		    "  %)30     .    N     8    (     0         %    \"     $    \"     0         .    0     8    (    !    "
     "      %    \"     $    /     0         0    #P   $9R;VU!=61I;T1E=FEC90 .    0     8    (    !          %    \"    "
+    " $    )     0         0    \"0   &1S<&1I86QO9P         "
+  }
+  DataRecord {
+    Tag			    DataTag3
+    Data		    "  %)30     .    N     8    (     0         %    \"     $    \"     0         .    0     8    (    !    "
+    "      %    \"     $    -     0         0    #0   %1O075D:6]$979I8V4    .    0     8    (    !          %    \"    "
+    " $    )     0         0    \"0   &1S<&1I86QO9P         "
+  }
+  DataRecord {
+    Tag			    DataTag2
+    Data		    "  %)30     .    N     8    (     0         %    \"     $    \"     0         .    0     8    (    !    "
+    "      %    \"     $    -     0         0    #0   %1O075D:6]$979I8V4    .    0     8    (    !          %    \"    "
     " $    )     0         0    \"0   &1S<&1I86QO9P         "
   }
   DataRecord {

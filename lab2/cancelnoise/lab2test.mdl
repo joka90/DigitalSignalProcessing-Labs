@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.172"
+    ComputedModelVersion    "1.174"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -22,11 +22,11 @@ Model {
   Creator		  "rtadm"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "micro386"
+  LastModifiedBy	  "johka546"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Dec 04 09:38:47 2013"
+  LastModifiedDate	  "Tue Dec 10 17:34:58 2013"
   RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:172>"
+  ModelVersionFormat	  "1.%<AutoIncrement:174>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -582,7 +582,7 @@ Model {
       DialogControllerArgs    "DataTag0"
       SourceBlock	      "dspsrcs4/From Audio\nDevice"
       SourceType	      "From Audio Device"
-      deviceName	      "3,4-INCA 88 Stereo Wave"
+      deviceName	      "1,2-INCA 88 Stereo Wave"
       numChannels	      "1"
       sampleRate	      "11025"
       deviceDatatype	      "Determine from output data type"
@@ -625,6 +625,18 @@ Model {
       autoBufferSize	      on
       bufferSize	      "4096"
       queueDuration	      "3"
+    }
+    Line {
+      SrcBlock		      "sound file"
+      SrcPort		      1
+      Points		      [85, 0; 0, -120; 85, 0; 0, 130; -10, 0]
+    }
+    Line {
+      SrcBlock		      "microphone"
+      SrcPort		      1
+      Points		      [115, 0; 0, -5; 90, 0]
+      DstBlock		      "speaker"
+      DstPort		      1
     }
   }
 }

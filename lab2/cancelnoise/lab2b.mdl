@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.166"
+    ComputedModelVersion    "1.167"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -22,11 +22,11 @@ Model {
   Creator		  "rtadm"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "freli005"
+  LastModifiedBy	  "johka546"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 22 14:37:10 2011"
+  LastModifiedDate	  "Tue Dec 10 20:21:54 2013"
   RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:166>"
+  ModelVersionFormat	  "1.%<AutoIncrement:167>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -768,7 +768,7 @@ Model {
   }
   System {
     Name		    "lab2b"
-    Location		    [404, 389, 1594, 1130]
+    Location		    [63, 192, 1253, 933]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -838,7 +838,7 @@ Model {
 	  VarVal		  "1"
 	  RepMode		  "Specify seed"
 	  rawSeed		  "1"
-	  IsInherit		  "off"
+	  IsInherit		  off
 	  SampMode		  "Discrete"
 	  SampTime		  "sampletime"
 	  SampFrame		  "1"
@@ -1075,7 +1075,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
-      MaskValueString	      "[1 80 20]|0.4|sampletime"
+      MaskValueString	      "[1 80 47]|0.4|sampletime"
       MaskTabNameString	      ",,"
       System {
 	Name			"LMS"
@@ -1315,6 +1315,7 @@ Model {
       Position		      [294, 65, 326, 135]
       BlockRotation	      270
       BlockMirror	      on
+      Value		      "4"
     }
     Block {
       BlockType		      SubSystem
@@ -1590,6 +1591,18 @@ Model {
       SrcBlock		      "Compressor"
       SrcPort		      1
       DstBlock		      "Buffer2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "mic (IN1)"
+      SrcPort		      1
+      DstBlock		      "Unbuffer"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "mic (IN3)"
+      SrcPort		      1
+      DstBlock		      "Unbuffer1"
       DstPort		      1
     }
     Annotation {
