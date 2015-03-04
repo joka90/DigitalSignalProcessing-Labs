@@ -1,2 +1,2 @@
-TSRT78-Labs
+DigitalSignalProcessing-Labs
 ===========
